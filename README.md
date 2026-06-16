@@ -2,7 +2,7 @@
 
 一个**零依赖、单 HTML 文件**的戏剧台词排练工具。上传任意剧本，选择角色，浏览器内即可开始对词练习——其他角色由 TTS 语音自动朗读，轮到你的台词时暂停等待。
 
-> **在线体验** &nbsp; 下载 `戏剧排练室_多幕兼容版.html`，双击用浏览器打开即可使用。推荐 Chrome / Edge。
+> **[在线体验](https://ninaliu9671.github.io/Script-Rehearsal-Studio/)** &nbsp;|&nbsp; 或下载 `戏剧排练室_多幕兼容版.html`，双击用浏览器打开即可离线使用。推荐 Chrome / Edge。
 
 ---
 
