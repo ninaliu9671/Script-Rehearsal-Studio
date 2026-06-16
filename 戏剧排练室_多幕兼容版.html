@@ -63,61 +63,26 @@
         ::-webkit-scrollbar-track { background:#1a2633; border-radius:10px; }
         ::-webkit-scrollbar-thumb { background:#4f7df3; border-radius:10px; }
         .detect-btn-area { margin-bottom:12px; text-align:right; }
-        .usage-box { background: rgba(79, 125, 243, 0.15); border-radius: 1rem; padding: 8px 16px; margin-bottom: 16px; font-size: 0.75rem; border-left: 3px solid #ffcd6b; }
-        .usage-box strong { color: #ffcd7e; }
-        .prompt-box { background: #0b111e; border-radius: 1rem; padding: 12px; margin-top: 16px; border: 1px solid #4f7df3; }
-        .prompt-box pre { margin: 0; white-space: pre-wrap; font-family: monospace; font-size: 0.75rem; background: #1e2a3a; padding: 8px; border-radius: 0.5rem; color: #e2e8f0; }
-        .copy-btn { margin-top: 8px; background: #4f7df3; border: none; padding: 4px 12px; border-radius: 2rem; font-size: 0.7rem; cursor: pointer; color: white; }
-        .copy-btn:hover { background: #3b67e0; }
+        .back-link { color:#9bb5d4; text-decoration:none; font-size:0.8rem; font-weight:400; margin-left:auto; display:inline-flex; align-items:center; gap:0.3rem; transition:0.15s; }
+        .back-link:hover { color:#eef4ff; }
     </style>
 </head>
 <body>
 <div class="app-container">
     <div class="card">
-        <div class="card-header"><i>🎭</i> 剧本工坊 · 上传剧本（支持 .txt / .md / .docx）</div>
+        <div class="card-header"><i>🎭</i> 剧本工坊 · 上传剧本（支持 .txt / .md / .docx）<a href="index.html" class="back-link" onclick="try{localStorage.setItem('rehearsal.lastPage','index')}catch(e){}">← 返回首页</a></div>
         <div class="card-content">
             <div class="upload-zone" id="uploadZone">
                 <div class="upload-icon">📄 🎙️ 📑</div>
                 <div>点击或拖拽上传剧本（可多选文件）</div>
-                <div style="font-size:0.7rem; margin-top:8px;">支持格式: .txt, .md, .docx<br>📘 <strong>上传方式说明：</strong><br>
-                • <strong>单个文件</strong>：请在文件内用「### 第一幕 ###」等标题分隔各幕，系统会自动拆分。<br>
-                • <strong>多个文件</strong>：每个文件视为一幕，建议文件名以数字开头（如「1_第一幕.txt」），系统将按数字顺序排序。<br>
-                • <strong>舞台提示</strong>：圆括号 () / （）和方括号〔〕内的内容视为舞台提示，保留显示但可一键隐藏。</div>
+                <div style="font-size:0.7rem; margin-top:8px; color:#9bb5d4;">
+                    支持 .txt / .md / .docx &nbsp;·&nbsp; 请使用标准化格式：<code>角色名：台词</code>，舞台提示用〔〕或（）包裹<br>
+                    单文件用「### 第X幕 ###」分幕 &nbsp;·&nbsp; 多文件按文件名数字排序自动合并 &nbsp;·&nbsp;
+                    <a href="index.html" style="color:#7ea8ff;">格式说明与 AI 转换提示词 →</a>
+                </div>
                 <input type="file" id="fileInput" accept=".txt,.md,.docx" multiple class="file-input">
             </div>
             <div style="display:flex; justify-content:flex-end; gap:0.6rem;"><button id="demoExampleBtn" class="btn btn-outline btn-sm">📖 加载示例剧本</button><button id="clearScriptBtn" class="btn btn-outline btn-sm">🗑️ 清空</button></div>
-            <div class="usage-box">
-                <strong>📘 使用说明</strong><br>
-                1️⃣ 上传剧本：可单选文件（内部用「### 第X幕 ###」分幕）或多选文件（每个文件即一幕，按文件名数字排序）<br>
-                2️⃣ 在左侧「角色表」中为每个角色选择声线（🎧试听）<br>
-                3️⃣ 在右侧「我的角色」下拉菜单中选定你要扮演的角色 → 你的台词会整行高亮并默认隐藏原文<br>
-                4️⃣ 「💡 全显示我的台词」一键显示所有台词，方便先浏览；「🙈 全隐藏我的台词」一键重新遮住，开始练习<br>
-                5️⃣ 单行控制：被隐藏的台词右侧有「💡 提示」，点击显示；再次点击「🙈 隐藏」可重新遮住<br>
-                6️⃣ 点击「▶ 开始排练」→ 其他角色自动朗读，轮到你的角色时暂停等待<br>
-                7️⃣ 说完台词：点击「✅ 我说完了」继续播放下一句<br>
-                8️⃣ 使用「⬆️上一句 / ⬇️下一句我的台词」快速跳转自己的台词<br>
-                9️⃣ 搜索框输入关键词后按回车，可查找台词或角色名<br>
-                🔟 多幕剧可用「选择幕」切换；舞台提示可一键隐藏/显示<br>
-                💡 提示：可用「一键检测可用语音」筛选出真正能发声的自然语音。<br>
-                💾 所有设置（剧本、角色、音色、进度）自动保存到浏览器，刷新页面可继续上次练习。
-            </div>
-            <div class="prompt-box">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                    <span style="font-weight:bold;">🤖 AI 剧本标准化提示词（可一键复制）</span>
-                    <button id="copyPromptBtn" class="copy-btn">📋 复制提示词</button>
-                </div>
-                <pre id="promptText">请将我下面的剧本文档转换成标准格式，只输出转换后的纯文本（可一键复制或下载的纯文本代码块形式）。
-
-## 标准格式要求
-1. 每句台词一行，格式：角色名：台词内容（冒号中文或英文均可）。
-2. 多行台词合并成一行。
-3. 舞台提示（动作说明、场景描述）用〔〕包裹，单独一行，如：〔罗密欧走近〕。
-4. 如果有多幕，请在每幕前写一行：### 第X幕 ###（X为数字或中文数字）。
-5. 删除多余空行，不要输出任何解释文字。
-
-现在请转换我下面的剧本：</pre>
-                <div style="font-size:0.7rem; margin-top:6px; color:#9bb5d4;">⬆️ 复制以上提示词，发给任意 AI（如 DeepSeek、ChatGPT），附上你的原始剧本，AI 会输出标准化格式，再粘贴到记事本保存为 .txt 上传即可。</div>
-            </div>
         </div>
     </div>
     <div class="dashboard">
@@ -213,8 +178,6 @@
     const toggleStageBtn = document.getElementById('toggleStageBtn');
     const actSelectorContainer = document.getElementById('actSelectorContainer');
     const actSelect = document.getElementById('actSelect');
-    const copyPromptBtn = document.getElementById('copyPromptBtn');
-    const promptText = document.getElementById('promptText');
     const toastEl = document.getElementById('toastMsg');
 
     // ========== Toast ==========
@@ -1095,7 +1058,7 @@
         myRoleName = "";
         revealedLines.clear();
         // 清除 localStorage
-        ['scriptData','lastActIndex','lastLineIndex','lastRole','voiceMap','showStageHints'].forEach(k => removeFromStorage(k));
+        ['scriptData','lastActIndex','lastLineIndex','lastRole','voiceMap','showStageHints','lastPage'].forEach(k => removeFromStorage(k));
         refreshUI();
         showToast("已清空剧本及所有设置");
     }
@@ -1157,15 +1120,6 @@
         showToast(`已切换到角色：${myRoleName || "全自动模式"}`);
     });
 
-    copyPromptBtn.addEventListener('click', () => {
-        const text = promptText.innerText;
-        navigator.clipboard.writeText(text).then(() => {
-            showToast("✅ 提示词已复制到剪贴板");
-        }).catch(() => {
-            showToast("复制失败，请手动选择复制", true);
-        });
-    });
-
     updateStageToggleBtn();
     toggleStageBtn.addEventListener('click', () => {
         showStageHints = !showStageHints;
@@ -1176,7 +1130,10 @@
         showToast(showStageHints ? '🎭 已显示舞台提示' : '🎭 已隐藏舞台提示');
     });
 
-    // ========== 启动：尝试恢复上次保存的剧本 ==========
+    // ========== 启动 ==========
+    // 记住用户在排练页，刷新后 index 会自动跳转回来
+    saveToStorage('lastPage', 'rehearsal');
+
     showStageHints = loadFromStorage('showStageHints', true);
     updateStageToggleBtn();
 

@@ -1,11 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=戏剧排练室_多幕兼容版.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>戏剧排练室 · 多幕兼容版</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: linear-gradient(145deg,#1e2a3a 0%,#0f1724 100%); font-family: 'Segoe UI','Inter',sans-serif; min-height: 100vh; color: #eef4ff; }
+        .container { max-width: 800px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem; }
+
+        /* Hero */
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero-icon { font-size: 3.5rem; margin-bottom: 0.8rem; }
+        .hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.6rem; }
+        .hero .subtitle { font-size: 1.05rem; color: #9bb5d4; line-height: 1.6; }
+
+        /* CTA */
+        .cta-area { text-align: center; margin: 2.5rem 0; }
+        .cta-btn { display: inline-block; background: #4f7df3; color: white; font-size: 1.15rem; font-weight: 600; padding: 0.85rem 2.5rem; border-radius: 3rem; text-decoration: none; border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(79,125,243,0.35); transition: all 0.2s; }
+        .cta-btn:hover { background: #3b67e0; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79,125,243,0.45); }
+
+        /* Section cards */
+        .section { background: rgba(18,25,40,0.75); backdrop-filter: blur(2px); border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.12); padding: 1.6rem 1.8rem; margin-bottom: 1.5rem; }
+        .section h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section ul { list-style: none; padding: 0; }
+        .section li { padding: 0.35rem 0; padding-left: 1.4rem; position: relative; font-size: 0.9rem; line-height: 1.6; color: #c8d8ec; }
+        .section li::before { content: '•'; position: absolute; left: 0.3rem; color: #4f7df3; font-weight: bold; }
+        .section p { font-size: 0.9rem; line-height: 1.6; color: #c8d8ec; }
+
+        /* Code block for format example */
+        .code-block { background: #0b111e; border-radius: 0.8rem; padding: 1rem 1.2rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.8rem; color: #c8d8ec; line-height: 1.7; overflow-x: auto; margin: 0.8rem 0; border: 1px solid rgba(79,125,243,0.25); }
+        .code-comment { color: #6b8aab; }
+
+        /* Prompt box */
+        .prompt-box { background: #0b111e; border-radius: 0.8rem; padding: 1rem 1.2rem; margin-top: 1rem; border: 1px solid rgba(79,125,243,0.25); }
+        .prompt-box pre { margin: 0; white-space: pre-wrap; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.78rem; color: #c8d8ec; line-height: 1.6; }
+        .copy-btn { background: #4f7df3; border: none; padding: 0.3rem 1rem; border-radius: 2rem; font-size: 0.75rem; cursor: pointer; color: white; transition: 0.15s; }
+        .copy-btn:hover { background: #3b67e0; }
+
+        /* Collapsible */
+        .collapsible-toggle { background: none; border: 1px solid rgba(255,255,255,0.15); color: #9bb5d4; padding: 0.4rem 1rem; border-radius: 2rem; font-size: 0.8rem; cursor: pointer; transition: 0.15s; display: inline-flex; align-items: center; gap: 0.4rem; }
+        .collapsible-toggle:hover { border-color: #4f7df3; color: #eef4ff; }
+        .collapsible-content { display: none; margin-top: 0.8rem; }
+        .collapsible-content.open { display: block; }
+
+        /* Browser table */
+        .browser-table { width: 100%; border-collapse: collapse; margin-top: 0.6rem; font-size: 0.85rem; }
+        .browser-table th, .browser-table td { padding: 0.45rem 0.8rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .browser-table th { color: #9bb5d4; font-weight: 500; }
+        .browser-table td { color: #c8d8ec; }
+
+        /* Footer */
+        .footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; color: #6b8aab; }
+        .footer a { color: #4f7df3; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Highlight tag */
+        .tag { display: inline-block; background: rgba(79,125,243,0.2); color: #7ea8ff; border-radius: 0.4rem; padding: 0.1rem 0.5rem; font-size: 0.75rem; font-weight: 500; }
+    </style>
 </head>
 <body>
-    <p>正在跳转到 <a href="戏剧排练室_多幕兼容版.html">戏剧排练室 · 多幕兼容版</a>...</p>
+<div class="container">
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-icon">🎭</div>
+        <h1>戏剧排练室 · 多幕兼容版</h1>
+        <p class="subtitle">
+            上传任意剧本，选择你的角色，浏览器内即可开始对词练习。<br>
+            其他角色由 TTS 语音自动朗读，轮到你的台词时暂停等待。
+        </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-area">
+        <a class="cta-btn" href="戏剧排练室_多幕兼容版.html">进入戏剧排练室</a>
+    </div>
+
+    <!-- Features -->
+    <div class="section">
+        <h2>✨ 功能亮点</h2>
+        <ul>
+            <li><strong>剧本上传</strong> — 支持 .txt / .md / .docx，单文件自动分幕或多文件合并</li>
+            <li><strong>角色语音</strong> — 为每个角色选择不同 TTS 声线，一键检测可用语音</li>
+            <li><strong>台词练习</strong> — 你的台词默认隐藏；「💡 全显示」先浏览，「🙈 全隐藏」开始练；单行可独立提示/隐藏</li>
+            <li><strong>排练模式</strong> — 点击「▶ 开始排练」，其他角色自动朗读，轮到你时暂停，说完点「✅ 我说完了」继续</li>
+            <li><strong>舞台提示</strong> — 保留显示，一键切换隐藏/显示</li>
+            <li><strong>多幕切换</strong> — 下拉选择幕次，角色表自动更新</li>
+            <li><strong>搜索定位</strong> — 输入关键词搜索角色名或台词，高亮匹配结果</li>
+            <li><strong>自动保存</strong> — 剧本、角色、音色、进度全部保存在浏览器中，刷新页面继续上次练习</li>
+        </ul>
+    </div>
+
+    <!-- Script format -->
+    <div class="section">
+        <h2>📝 剧本格式要求</h2>
+        <p>每句台词一行，格式为 <code>角色名：台词内容</code>（中英文冒号均可）。舞台提示用括号包裹，单独一行。多幕用标题行分隔。</p>
+        <div class="code-block">
+            <span class="code-comment">### 第一幕 ###</span><br>
+            〔黎明，城堡外。〕<br>
+            角色A：这是角色A的台词。<br>
+            角色B：这是角色B的台词。（看向远方）<br>
+            〔角色A走近〕<br>
+            角色A：这是另一句台词。<br><br>
+            <span class="code-comment">### 第二幕 ###</span><br>
+            角色B：第二幕开始了。
+        </div>
+        <p style="margin-top:0.6rem; font-size:0.82rem; color:#9bb5d4;">
+            舞台提示支持三种格式：<code>〔...〕</code>、<code>（...）</code>、<code>(...)</code>
+        </p>
+
+        <!-- AI prompt (collapsible) -->
+        <div style="margin-top: 1rem;">
+            <button class="collapsible-toggle" onclick="togglePrompt()">
+                <span id="promptArrow">▶</span> 🤖 AI 剧本标准化提示词
+            </button>
+            <div id="promptContent" class="collapsible-content">
+                <p style="font-size:0.82rem; color:#9bb5d4; margin-bottom:0.6rem;">如果你的剧本格式不规范，复制以下提示词发给任意 AI（如 DeepSeek、ChatGPT），附上原始剧本即可自动转换。</p>
+                <div class="prompt-box">
+                    <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+                        <button class="copy-btn" onclick="copyPrompt()">📋 复制提示词</button>
+                    </div>
+                    <pre id="promptText">请将我下面的剧本文档转换成标准格式，只输出转换后的纯文本（可一键复制或下载的纯文本代码块形式）。
+
+## 标准格式要求
+1. 每句台词一行，格式：角色名：台词内容（冒号中文或英文均可）。
+2. 多行台词合并成一行。
+3. 舞台提示（动作说明、场景描述）用〔〕包裹，单独一行，如：〔罗密欧走近〕。
+4. 如果有多幕，请在每幕前写一行：### 第X幕 ###（X为数字或中文数字）。
+5. 删除多余空行，不要输出任何解释文字。
+
+现在请转换我下面的剧本：</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How to use -->
+    <div class="section">
+        <h2>🚀 使用流程</h2>
+        <ul>
+            <li><strong>上传剧本</strong> — 进入排练室后，上传你的剧本文件（或试用示例剧本）</li>
+            <li><strong>选择声线</strong> — 在左侧角色表中为每个角色选择 TTS 声线</li>
+            <li><strong>选定角色</strong> — 在「我的角色」下拉菜单中选择你要扮演的角色</li>
+            <li><strong>浏览台词</strong> — 点击「💡 全显示我的台词」先熟悉内容，再点「🙈 全隐藏」开始练习</li>
+            <li><strong>开始排练</strong> — 点击「▶ 开始排练」，跟着节奏对词</li>
+        </ul>
+    </div>
+
+    <!-- Browser compatibility -->
+    <div class="section">
+        <h2>🌐 浏览器兼容性</h2>
+        <table class="browser-table">
+            <tr><th>浏览器</th><th>支持情况</th></tr>
+            <tr><td>Chrome / Edge</td><td>推荐，TTS 语音最丰富</td></tr>
+            <tr><td>Firefox</td><td>支持，但可用 TTS 语音较少</td></tr>
+            <tr><td>Safari</td><td>基本支持</td></tr>
+        </table>
+        <p style="margin-top:0.8rem; font-size:0.82rem; color:#9bb5d4;">
+            <span class="tag">离线可用</span> 上传 .txt / .md 和 TTS 语音朗读均可离线工作；仅 .docx 解析需首次联网加载 mammoth.js。
+        </p>
+    </div>
+
+    <!-- CTA bottom -->
+    <div class="cta-area">
+        <a class="cta-btn" href="戏剧排练室_多幕兼容版.html">进入戏剧排练室</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>
+            相关项目：<a href="https://github.com/ninaliu9671/Salem-Script-Studio" target="_blank">Salem-Script-Studio</a> — 《萨勒姆的女巫》专用排练版
+        </p>
+        <p style="margin-top:0.4rem;">
+            <a href="https://github.com/ninaliu9671/Script-Rehearsal-Studio" target="_blank">GitHub</a> · MIT License
+        </p>
+    </div>
+</div>
+
+<script>
+    function togglePrompt() {
+        const content = document.getElementById('promptContent');
+        const arrow = document.getElementById('promptArrow');
+        content.classList.toggle('open');
+        arrow.textContent = content.classList.contains('open') ? '▼' : '▶';
+    }
+
+    function copyPrompt() {
+        const text = document.getElementById('promptText').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = '✅ 已复制';
+            setTimeout(() => { btn.textContent = '📋 复制提示词'; }, 2000);
+        }).catch(() => {
+            alert('复制失败，请手动选择复制');
+        });
+    }
+
+    // 如果用户之前已经进入过排练页且有保存数据，自动跳转
+    try {
+        const hasScript = localStorage.getItem('rehearsal.scriptData');
+        const lastPage = localStorage.getItem('rehearsal.lastPage');
+        if (hasScript && lastPage === 'rehearsal') {
+            window.location.href = '戏剧排练室_多幕兼容版.html';
+        }
+    } catch(e) {}
+</script>
 </body>
 </html>
