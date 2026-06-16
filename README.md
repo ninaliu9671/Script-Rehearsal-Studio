@@ -2,7 +2,7 @@
 
 一个**零依赖、单 HTML 文件**的戏剧台词排练工具。上传任意剧本，选择角色，浏览器内即可开始对词练习——其他角色由 TTS 语音自动朗读，轮到你的台词时暂停等待。
 
-> **[在线体验](https://ninaliu9671.github.io/Script-Rehearsal-Studio/)** &nbsp;|&nbsp; 或下载 `戏剧排练室_多幕兼容版.html`，双击用浏览器打开即可离线使用。推荐 Chrome / Edge。
+> **[在线体验](https://ninaliu9671.github.io/Script-Rehearsal-Studio/)** &nbsp;|&nbsp; 或下载 `戏剧排练室_多幕兼容版.html`，双击用浏览器打开即可使用。上传 `.txt` / `.md` 剧本和 TTS 语音朗读均可离线工作；仅 `.docx` 解析需首次联网加载 mammoth.js。推荐 Chrome / Edge。
 
 ---
 
@@ -77,8 +77,8 @@
 ## 技术细节
 
 - **纯前端**：单个 HTML 文件，无需安装、无需服务器
-- **TTS**：使用浏览器原生 [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)
-- **外部依赖**：仅 [mammoth.js](https://github.com/mwilliamson/mammoth.js)（CDN 加载，用于解析 .docx 文件；不上传 .docx 则无需联网）
+- **TTS**：使用浏览器原生 [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)，语音引擎由操作系统提供，离线可用
+- **外部依赖**：仅 [mammoth.js](https://github.com/mwilliamson/mammoth.js)（CDN 加载，仅用于解析 `.docx` 文件；上传 `.txt` / `.md` 则完全无需联网）
 - **数据存储**：所有数据保存在浏览器 localStorage，不上传任何内容到服务器
 
 ---
